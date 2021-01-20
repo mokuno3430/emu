@@ -42,9 +42,11 @@ class Gene:
         else:
             start = scaffold.convert_position2xcoord( int( buf[4] ) )
             end = scaffold.convert_position2xcoord( int( buf[3] ) )
-            if( buf[6] == '+' ): #逆にする
+            if( buf[6] == '+' ):
                 return  start, end, '-'
-            return start, end, '+'
+            elif( buf[6] == '-' ):
+                return start, end, '+'
+            return start, end, buf[6]
 
     def plot( self, ax ):
         ax.fill( self.x, self.y, color=self.color.color, alpha=self.color.alpha, lw=0 )
